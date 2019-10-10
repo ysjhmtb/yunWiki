@@ -11,17 +11,29 @@ const initialState = {
         {
             img: img1,
             title: 'Spring Boot',
-            content: 'Spring Boot contents'
+            content: 'Lorem Ipsum is simply dummy text of the printing and \
+                    typesetting industry. Lorem Ipsum has been the industry\'s \
+                    standard dummy text ever since the 1500s, when an unknown \
+                    printer took a galley of type and scrambled it to make \
+                    '
         },
         {
             img: img2,
             title: 'React',
-            content: 'React contents'
+            content: 'Lorem Ipsum is simply dummy text of the printing and \
+                    typesetting industry. Lorem Ipsum has been the industry\'s \
+                    standard dummy text ever since the 1500s, when an unknown \
+                    printer took a galley of type and scrambled it to make \
+                    '
         },
         {
             img: img3,
             title: 'Network',
-            content: 'Network contents'
+            content: 'Lorem Ipsum is simply dummy text of the printing and \
+                    typesetting industry. Lorem Ipsum has been the industry\'s \
+                    standard dummy text ever since the 1500s, when an unknown \
+                    printer took a galley of type and scrambled it to make \
+                    '
         }
     ]
 };

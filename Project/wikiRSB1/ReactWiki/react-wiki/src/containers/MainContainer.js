@@ -1,13 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { nohave } from '../modules/main';
-import Main from '../components/Main';
+import MainHeader from '../components/Main/MainHeader';
+import MainBody from '../components/Main/MainBody';
+import styled, { css } from 'styled-components';
+
+
+const DivMainContainer = styled.div`
+    text-align:center;
+    vertical-align: middle;
+`;
 
 
 const MainContainer = ({ nohave, menuArr }) => {
 
     return (
-        <Main nohave={nohave} menuArr={menuArr} />
+        <>
+            <MainHeader />
+            <MainBody menuArr={menuArr} />
+        </>
     );
 };
 
