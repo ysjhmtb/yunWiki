@@ -15,10 +15,10 @@ const DivMainContainer = styled.div`
 const MainContainer = ({ nohave, menuArr }) => {
 
     return (
-        <>
+        <DivMainContainer>
             <MainHeader />
             <MainBody menuArr={menuArr} />
-        </>
+        </DivMainContainer>
     );
 };
 
