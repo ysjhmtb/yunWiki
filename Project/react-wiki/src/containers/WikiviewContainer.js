@@ -9,7 +9,7 @@ const DivWikiviewContainer = styled.div`
 `;
 
 const WikiviewContainer = ({ match }) => {
-
+    
     const [wikiTitlesArr, setWikiTitlesArr] = useState(
         {
             springTitles: ['Spring Boot first', 'Spring Boot second'],
@@ -20,9 +20,9 @@ const WikiviewContainer = ({ match }) => {
 
     const [wikiContentsArr, setWikiContentsArr] = useState(
         {
-            springContents: ['#Spring Boot first\n ##H2.', '#Spring Boot second\n ##H2.'],
-            reactContents: ['#React first\n ##H2.', '#React second\n ##H2.'],
-            networkContents: ['#Network first\n ##H2.', '#Network second\n ##H2.']
+            springContents: ['# Spring Boot first\n ## H2.', '# Spring Boot second\n ## H2.'],
+            reactContents: ['# React first\n ## H2.', '# React second\n ## H2.'],
+            networkContents: ['# Network first\n ## H2.', '# Network second\n ## H2.']
         }
     );
 
