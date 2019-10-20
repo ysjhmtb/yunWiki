@@ -11,13 +11,10 @@ const Contentview = (props) => {
     return (
         <div>
             <div className="catagoryDiv">{props.category}</div>
-            <div className="writingDiv"><Link to="/"> 작성하기 </Link></div>
+            <div className="writingDiv"><Link to="/editor"> 작성하기 </Link></div>
 
             <hr />
-            <MarkdownRenderer markdown={props.content} />
-
-            {/* <Test/> */}
-        
+            <MarkdownRenderer markdown={props.content} />        
 
         </div>
     );
