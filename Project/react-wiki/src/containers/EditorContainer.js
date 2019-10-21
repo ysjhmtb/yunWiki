@@ -7,15 +7,12 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
 
+// <Redirect to={"/Activities/" + this.state.idUser }/>
 
 const EditorContainer = (props) => {
     console.log('EditorContainer');
     console.log(props);
-    const renderRedirect = () => {
-        if (props.signstate.signstate == false) {
-            return <Redirect to='/signin' />
-        }
-    }
+
 
     // editor
     const [rawmarkdown, setRawmarkdown] = useState('');
@@ -25,13 +22,26 @@ const EditorContainer = (props) => {
         setRawmarkdown(value);
     };
 
-    // writing completed uncompleted
+    // writing state 
+    const [writingCompleted, setWritingCompleted] = useState(false);
 
+    const renderRedirect = () => {
+        if (props.signstate.signstate == false) {
+            return <Redirect to={'/signin/' + props.category} />
+        } else if (writingCompleted === true) {
+            return <Redirect to={'/wikiview/' + props.category} />
+        }
+
+
+    }
+
+
+    // writing completed 
     const completeWriting = () => {
         console.log('completeWriting');
-        let url = '/'+'counter';
-        console.log(url);
-        return <Redirect to='/wikiview/springboot' />
+        console.log('/wikiview/' + props.category);
+        setWritingCompleted(true);
+        renderRedirect();
     }
 
 
@@ -48,7 +58,7 @@ const EditorContainer = (props) => {
 
             <hr />
 
-            <button onClick={completeWriting}>complete</button>
+            <button onClick={() => completeWriting()}>complete</button>
 
         </div>
     )
@@ -59,8 +69,9 @@ EditorContainer.propTypes = {
     signchange: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
     signstate: state.sign,
+    category: props.match.params.category
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -68,3 +79,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditorContainer)
+

@@ -9,7 +9,9 @@ const DivWikiviewContainer = styled.div`
 `;
 
 const WikiviewContainer = ({ match }) => {
-    
+
+    console.log(match);
+
     const [wikiTitlesArr, setWikiTitlesArr] = useState(
         {
             springTitles: ['Spring Boot first', 'Spring Boot second'],
@@ -26,32 +28,32 @@ const WikiviewContainer = ({ match }) => {
         }
     );
 
-    const { subject } = match.params;
+    const { category } = match.params;
 
-    if (!subject) {
+    if (!category) {
         return <div>존재하는 않는 페이지!</div>;
     }
 
-    if (subject == 'springboot') {
+    if (category === 'SpringBoot') {
         return (
             <DivWikiviewContainer>
-                <Wikiview 
+                <Wikiview
                     category='SpringBoot'
                     titles={wikiTitlesArr.springTitles}
                     contents={wikiContentsArr.springContents} />
             </DivWikiviewContainer>
         );
 
-    } else if (subject == 'react') {
+    } else if (category === 'React') {
         return (
             <DivWikiviewContainer>
-                <Wikiview 
+                <Wikiview
                     category="React"
                     titles={wikiTitlesArr.reactTitles}
                     contents={wikiContentsArr.reactContents} />
             </DivWikiviewContainer>
         );
-    } else if (subject == 'network') {
+    } else if (category === 'Network') {
         return (
             <DivWikiviewContainer>
                 <Wikiview
@@ -59,6 +61,10 @@ const WikiviewContainer = ({ match }) => {
                     titles={wikiTitlesArr.networkTitles}
                     contents={wikiContentsArr.networkContents} />
             </DivWikiviewContainer>
+        );
+    }else{
+        return(
+            <div>hmm</div>
         );
     }
 };

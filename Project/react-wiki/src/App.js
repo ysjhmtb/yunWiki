@@ -13,9 +13,9 @@ function App() {
     <div>
       <Route path="/" component={MainContainer} exact={true} />
       <Route path="/counter" component={Counter} />
-      <Route path="/wikiview/:subject" component={WikiviewContainer} />
-      <Route path="/editor" component={EditorContainer} />
-      <Route path="/signin" component={SignContainer} />
+      <Route path="/wikiview/:category" component={WikiviewContainer} />
+      <Route path="/editor/:category" component={EditorContainer} />
+      <Route path="/signin/:category" component={SignContainer} />
 
     </div>
   );

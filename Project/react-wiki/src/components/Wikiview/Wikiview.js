@@ -42,7 +42,7 @@ const Wikiview = (props) => {
     console.log(props.titles[0]);
     console.log(props.category);
 
-    const [contentToRender, setContentToRender] = useState("test")
+    const [contentToRender, setContentToRender] = useState("t")
 
     function renderContent(index){
         console.log('clicked');

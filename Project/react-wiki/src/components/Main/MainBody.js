@@ -21,21 +21,21 @@ const MainBody = (props) => {
     return (
         <DivMainBody>
 
-            <Link to="/wikiview/springboot">
+            <Link to="/wikiview/SpringBoot">
                 <MainCard colorCardImg="#e25153"
                     imgSrc={props.menuArr[0].img}
                     colorCardText="#bc2c2d"
                     text={props.menuArr[0].content} />
             </Link>
 
-            <Link to="/wikiview/react">
+            <Link to="/wikiview/React">
                 <MainCard colorCardImg="#64b9cc"
                     imgSrc={props.menuArr[1].img}
                     colorCardText="#398392"
                     text={props.menuArr[1].content} />
             </Link>
 
-            <Link to="/wikiview/network">
+            <Link to="/wikiview/Network">
                 <MainCard colorCardImg="#72bd87"
                     imgSrc={props.menuArr[2].img}
                     colorCardText="#478056"

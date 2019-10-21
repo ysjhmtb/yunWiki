@@ -7,6 +7,7 @@ import GoogleLogin from 'react-google-login';
 
 const SignContainer = (props) => {
     console.log('SignContainer');
+    console.log(props);
 
     const responseGoogle = (response) => {
         console.log(response);
@@ -19,7 +20,7 @@ const SignContainer = (props) => {
 
     const renderRedirect = () => {
         if (props.signstate.signstate == true) {
-            return <Redirect to='/editor' />
+            return <Redirect to={'/editor/' + props.category} />
         }
     }
 
@@ -37,8 +38,9 @@ const SignContainer = (props) => {
     )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
     signstate: state.sign,
+    category: props.match.params.category
 })
 
 const mapDispatchToProps = dispatch => ({
