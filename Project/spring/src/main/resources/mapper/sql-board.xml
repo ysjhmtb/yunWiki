@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.bootwiki.wiki.mapper.WikiMapper">
+    <select id="selectWikiSpringList" resultType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+
+
+		SELECT wiki_index,
+			   title,
+			   contents,
+			   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
+		FROM wiki_board_spring
+		WHERE deleted_yn = 'N'
+		ORDER BY wiki_index DESC
+
+
+        ]]>
+	</select>
+
+    <select id="selectWikiReactList" resultType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+
+		SELECT wiki_index,
+		   title,
+		   contents,
+		   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
+		FROM wiki_board_react
+		WHERE deleted_yn = 'N'
+		ORDER BY wiki_index DESC
+
+        ]]>
+	</select>
+
+	<select id="selectWikiNetworkList" resultType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+
+		SELECT wiki_index,
+		   title,
+		   contents,
+		   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
+		FROM wiki_board_network
+		WHERE deleted_yn = 'N'
+		ORDER BY wiki_index DESC
+
+        ]]>
+	</select>
+</mapper>

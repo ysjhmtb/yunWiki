@@ -7,7 +7,10 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
 
-// <Redirect to={"/Activities/" + this.state.idUser }/>
+// temp
+
+  
+// temp
 
 const EditorContainer = (props) => {
     console.log('EditorContainer');
@@ -55,6 +58,9 @@ const EditorContainer = (props) => {
 
             <SimpleMDE onChange={handleChange} />
             <MarkdownRenderer markdown={rawmarkdown} />
+
+
+
 
             <hr />
 

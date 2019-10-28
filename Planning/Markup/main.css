@@ -1,0 +1,91 @@
+.main{
+    background-color: #e7e3e5;
+}             
+             
+.wrapper {
+    display:grid;
+    width: 100%;
+    text-align: center;
+}
+
+a:link { color: red; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
+
+.nav {
+    background: #e7e3e5;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    top: 0;
+}
+.navTitle {
+    margin: 0px 30px;
+}
+.navItem {
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.mainBody {
+    padding: 100px;
+}
+
+.card {
+    background: #fff;
+    /* border-radius: 0px; */
+    display: inline-block;
+    height: 400px;
+    margin: 1rem;
+    position: relative;
+    width: 300px;
+  }
+  
+  .card-1 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+  .card-1:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  .card-2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+  .card-2:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  .card-3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+  .card-3:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+  .cardIconBox {
+    height: 50%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .icon1{ background-color: #e25153; }
+  .icon2{ background-color: #64b9cc; }
+  .icon3{ background-color: #72bd87; }
+
+  .cardTextBox {
+    height: 50%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .textbox1{ background-color: #bc2c2d; }
+  .textbox2{ background-color: #398392; }
+  .textbox3{ background-color: #478056; }
+
+
+
+
+
+
+
+
+  
