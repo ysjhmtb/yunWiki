@@ -11,5 +11,6 @@ public interface WikiMapper {
     List<WikiDto> selectWikiSpringList() throws Exception;
     List<WikiDto> selectWikiReactList() throws Exception;
     List<WikiDto> selectWikiNetworkList() throws Exception;
+    void insertWikiSpring(WikiDto wiki) throws Exception;
 
 }

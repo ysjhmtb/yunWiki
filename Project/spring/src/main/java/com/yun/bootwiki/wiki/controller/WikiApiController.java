@@ -1,15 +1,19 @@
 package com.yun.bootwiki.wiki.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.yun.bootwiki.wiki.dto.WikiDto;
 import com.yun.bootwiki.wiki.service.WikiService;
+//import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class WikiApiController {
@@ -33,5 +37,27 @@ public class WikiApiController {
     @RequestMapping(value = "/api/wikinetwork", method = RequestMethod.GET)
     public List<WikiDto> openWikiNetworkList() throws Exception {
         return wikiService.selectWikiNetworkList();
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/post/SpringBoot", method = RequestMethod.POST)
+    public void insertWikiSpring(@RequestBody String jsonMessage) throws Exception {
+        // {"params":{"title":"123","contents":"# 456\n789"}}
+        System.out.println(jsonMessage);
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        // {"params":{"title":"143","contents":"345"}}
+        System.out.println(element);
+//        System.out.println(element.getAsJsonObject().get("params"));
+//        System.out.println(element.getAsJsonObject().get("params").getAsJsonObject().get("title"));
+//        System.out.println(element.getAsJsonObject().get("params").getAsJsonObject().get("contents"));
+
+        String title = element.getAsJsonObject().get("title").getAsString();
+        String contents = element.getAsJsonObject().get("contents").getAsString();
+
+        WikiDto wiki = new WikiDto();
+        wiki.setTitle(title);
+        wiki.setContents(contents);
+        wikiService.insertWikiSpring(wiki);
     }
 }

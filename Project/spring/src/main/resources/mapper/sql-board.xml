@@ -45,4 +45,24 @@
 
         ]]>
 	</select>
+
+	<insert id="insertWikiSpring" parameterType="com.yun.bootwiki.wiki.dto.WikiDto" useGeneratedKeys="false" keyProperty="wiki_index">
+		<![CDATA[
+			INSERT INTO wiki_board_spring
+			(
+				wiki_index,
+				title,
+				contents,
+				created_datetime
+			)
+			VALUES
+			(
+				0,
+				#{title},
+				#{contents},
+				NOW()
+			)
+		]]>
+	</insert>
+
 </mapper>

@@ -6,10 +6,11 @@ import { signchange } from '../actions/sign'
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
+import axios from 'axios'
 
 // temp
 
-  
+
 // temp
 
 const EditorContainer = (props) => {
@@ -18,7 +19,13 @@ const EditorContainer = (props) => {
 
 
     // editor
+    const [rawtitle, setRawtitle] = useState('');
     const [rawmarkdown, setRawmarkdown] = useState('');
+
+    const handleTitle = e => {
+        console.log(e.target.value);
+        setRawtitle(e.target.value);
+    }
 
     const handleChange = value => {
         console.log(value);
@@ -43,6 +50,27 @@ const EditorContainer = (props) => {
     const completeWriting = () => {
         console.log('completeWriting');
         console.log('/wikiview/' + props.category);
+
+        try {
+            console.log('completedWriting');
+            console.log(rawtitle);
+            console.log(rawmarkdown);
+
+            const tempCategory = props.category;
+            const tempUrl = 'http://localhost:8080/api/post/' + tempCategory;
+            axios.post(tempUrl, {
+                // params: {
+                //     title: rawtitle,
+                //     contents: rawmarkdown
+                // }
+                title: rawtitle,
+                contents: rawmarkdown
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+
         setWritingCompleted(true);
         renderRedirect();
     }
@@ -56,11 +84,9 @@ const EditorContainer = (props) => {
             {/* <button onClick={props.signchange}>change sign state</button> */}
             {renderRedirect()}
 
+            <div>Title: <input type="text" onChange={handleTitle} /></div>
             <SimpleMDE onChange={handleChange} />
             <MarkdownRenderer markdown={rawmarkdown} />
-
-
-
 
             <hr />
 

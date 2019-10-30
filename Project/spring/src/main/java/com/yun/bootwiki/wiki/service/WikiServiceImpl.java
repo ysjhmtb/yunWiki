@@ -27,4 +27,10 @@ public class WikiServiceImpl implements WikiService {
     public List<WikiDto> selectWikiNetworkList() throws Exception{
         return wikiMapper.selectWikiNetworkList();
     }
+
+
+    @Override
+    public void insertWikiSpring(WikiDto wiki) throws Exception{
+        wikiMapper.insertWikiSpring(wiki);
+    }
 }
