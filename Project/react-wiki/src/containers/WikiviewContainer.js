@@ -11,55 +11,20 @@ const DivWikiviewContainer = styled.div`
 
 const WikiviewContainer = ({ match }) => {
 
-    console.log(match);
-    /*
-        const [wikiTitlesArr, setWikiTitlesArr] = useState(
-            {
-                springTitles: ['Spring Boot first', 'Spring Boot second'],
-                reactTitles: ['React first', 'React second'],
-                networkTitles: ['Network first', 'Network second']
-            }
-        );
-    
-        const [wikiContentsArr, setWikiContentsArr] = useState(
-            {
-                springContents: ['# Spring Boot first\n ## H2.', '# Spring Boot second\n ## H2.'],
-                reactContents: ['# React first\n ## H2.', '# React second\n ## H2.'],
-                networkContents: ['# Network first\n ## H2.', '# Network second\n ## H2.']
-            }
-        );
-    */
     const [wikiConArrObj, setWikiConArrObj] = useState({
-        springTitles:[],
-        springContents:[],
-        reactTitles:[],
-        reactContents:[],
-        networkTitles:[],
-        networkContents:[]
-    });
 
+        springObjArr: [],
+        reactObjArr: [],
+        networkObjArr: []
+    });
 
     const [loading, setLoading] = useState(false);
 
-
-
-
-
     useEffect(() => {
-        /*
-        [{...}]
-        0:
-        contents: "# 주제1 ↵ 컨텐츠"
-        createdDatetime: "2019.10.26 08:50:36"
-        title: "스프링 제목 하나"
-        wikiIndex: 1
-        */
-        let tempSpringTitles = [];
-        let tempSpringContents = [];
-        let tempReactTitles = [];
-        let tempReactContents = [];
-        let tempNetworkTitles = [];
-        let tempNetworkContents = [];
+
+        let TspringObjs = [];
+        let TreactObjs = [];
+        let TnetworkObjs = [];
 
         const getTitlesAndContents = async () => {
             setLoading(true);
@@ -68,10 +33,16 @@ const WikiviewContainer = ({ match }) => {
                 let response = await axios.get(
                     'http://localhost:8080/api/wikispring',
                 );
+                console.log('받아온 데이터 출력');
+                console.log(response.data);
 
                 response.data.forEach(element => {
-                    tempSpringTitles.push(element.title);
-                    tempSpringContents.push(element.contents);
+                    console.log('forEach element print');
+                    console.log(element);
+                    /*
+                    {wikiIndex: 7, title: "llvm", contents: "hmm", createdDatetime: "2019.10.30 08:24:21"}
+                    */
+                    TspringObjs.push(element);
                 });
 
 
@@ -81,8 +52,7 @@ const WikiviewContainer = ({ match }) => {
                 );
 
                 response.data.forEach(element => {
-                    tempReactTitles.push(element.title);
-                    tempReactContents.push(element.contents);
+                    TreactObjs.push(element);
                 });
 
 
@@ -92,18 +62,15 @@ const WikiviewContainer = ({ match }) => {
                 );
 
                 response.data.forEach(element => {
-                    tempNetworkTitles.push(element.title);
-                    tempNetworkContents.push(element.contents);
+                    TnetworkObjs.push(element);
                 });
                 const tempObj = {
-                    springTitles:tempSpringTitles,
-                    springContents:tempSpringContents,
-                    reactTitles:tempReactTitles,
-                    reactContents:tempReactContents,
-                    networkTitles:tempNetworkTitles,
-                    networkContents:tempNetworkContents
+                    springObjArr: TspringObjs,
+                    reactObjArr: TreactObjs,
+                    networkObjArr: TnetworkObjs
+
                 }
-                setWikiConArrObj(tempObj);               
+                setWikiConArrObj(tempObj);
 
                 setLoading(false);
 
@@ -132,14 +99,10 @@ const WikiviewContainer = ({ match }) => {
         return (
             <DivWikiviewContainer>
 
-                {/* <Wikiview
+                <Wikiview
                     category='SpringBoot'
-                    titles={wikiTitlesArr.springTitles}
-                    contents={wikiContentsArr.springContents} /> */}
-                    <Wikiview
-                    category='SpringBoot'
-                    titles={wikiConArrObj.springTitles}
-                    contents={wikiConArrObj.springContents} />
+                    ObjArr={wikiConArrObj.springObjArr}
+                />
             </DivWikiviewContainer>
         );
 
@@ -148,9 +111,9 @@ const WikiviewContainer = ({ match }) => {
             <DivWikiviewContainer>
 
                 <Wikiview
-                    category="React"
-                    titles={wikiConArrObj.reactTitles}
-                    contents={wikiConArrObj.reactContents} />
+                    category='React'
+                    ObjArr={wikiConArrObj.reactObjArr}
+                />
             </DivWikiviewContainer>
         );
     } else if (loading === false && category === 'Network') {
@@ -158,9 +121,9 @@ const WikiviewContainer = ({ match }) => {
             <DivWikiviewContainer>
 
                 <Wikiview
-                    category="Network"
-                    titles={wikiConArrObj.networkTitles}
-                    contents={wikiConArrObj.networkContents} />
+                    category='Network'
+                    ObjArr={wikiConArrObj.networkObjArr}
+                />
             </DivWikiviewContainer>
         );
     } else {

@@ -16,8 +16,6 @@ const DivMainBody = styled.div`
 
 const MainBody = (props) => {
 
-    console.log(props.menuArr[0]);
-
     return (
         <DivMainBody>
 

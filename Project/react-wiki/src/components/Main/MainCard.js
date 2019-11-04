@@ -37,13 +37,7 @@ const TextDivInCard = styled.div`
     vertical-align: middle;
 `;
 
-const MainCard = (props) => {
-
-    console.log("Hi");
-    console.log(props.colorCardImg);
-    // console.log(imgSrc);
-    // console.log(colorCardText);
-    // console.log(text);
+const MainCard = (props) => {    
 
     return (
         <CardShell>

@@ -10,6 +10,9 @@ public interface WikiService {
     List<WikiDto> selectWikiNetworkList() throws Exception;
 
     void insertWikiSpring(WikiDto wiki) throws Exception;
+    void insertWikiReact(WikiDto wiki) throws Exception;
+    void insertWikiNetwork(WikiDto wiki) throws Exception;
+
 
 
 }

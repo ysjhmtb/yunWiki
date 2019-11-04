@@ -8,16 +8,8 @@ import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
 
-// temp
-
-
-// temp
-
 const EditorContainer = (props) => {
-    console.log('EditorContainer');
-    console.log(props);
-
-
+    
     // editor
     const [rawtitle, setRawtitle] = useState('');
     const [rawmarkdown, setRawmarkdown] = useState('');
@@ -48,21 +40,12 @@ const EditorContainer = (props) => {
 
     // writing completed 
     const completeWriting = () => {
-        console.log('completeWriting');
-        console.log('/wikiview/' + props.category);
-
+        
         try {
-            console.log('completedWriting');
-            console.log(rawtitle);
-            console.log(rawmarkdown);
 
             const tempCategory = props.category;
             const tempUrl = 'http://localhost:8080/api/post/' + tempCategory;
             axios.post(tempUrl, {
-                // params: {
-                //     title: rawtitle,
-                //     contents: rawmarkdown
-                // }
                 title: rawtitle,
                 contents: rawmarkdown
             });
@@ -75,13 +58,8 @@ const EditorContainer = (props) => {
         renderRedirect();
     }
 
-
-
-
     return (
         <div>
-            {/* sign state: {props.signstate.signstate.toString()} */}
-            {/* <button onClick={props.signchange}>change sign state</button> */}
             {renderRedirect()}
 
             <div>Title: <input type="text" onChange={handleTitle} /></div>

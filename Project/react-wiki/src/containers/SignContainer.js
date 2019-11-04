@@ -6,9 +6,7 @@ import GoogleLogin from 'react-google-login';
 
 
 const SignContainer = (props) => {
-    console.log('SignContainer');
-    console.log(props);
-
+    
     const responseGoogle = (response) => {
         console.log(response);
         console.log(response.profileObj.email);

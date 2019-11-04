@@ -33,4 +33,14 @@ public class WikiServiceImpl implements WikiService {
     public void insertWikiSpring(WikiDto wiki) throws Exception{
         wikiMapper.insertWikiSpring(wiki);
     }
+
+    @Override
+    public void insertWikiReact(WikiDto wiki) throws Exception{
+        wikiMapper.insertWikiReact(wiki);
+    }
+
+    @Override
+    public void insertWikiNetwork(WikiDto wiki) throws Exception{
+        wikiMapper.insertWikiNetwork(wiki);
+    }
 }

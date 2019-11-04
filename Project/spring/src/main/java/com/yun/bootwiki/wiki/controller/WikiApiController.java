@@ -60,4 +60,34 @@ public class WikiApiController {
         wiki.setContents(contents);
         wikiService.insertWikiSpring(wiki);
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/post/React", method = RequestMethod.POST)
+    public void insertWikiReact(@RequestBody String jsonMessage) throws Exception {
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        String title = element.getAsJsonObject().get("title").getAsString();
+        String contents = element.getAsJsonObject().get("contents").getAsString();
+
+        WikiDto wiki = new WikiDto();
+        wiki.setTitle(title);
+        wiki.setContents(contents);
+        wikiService.insertWikiReact(wiki);
+
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/post/Network", method = RequestMethod.POST)
+    public void insertWikiNetwork(@RequestBody String jsonMessage) throws Exception {
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        String title = element.getAsJsonObject().get("title").getAsString();
+        String contents = element.getAsJsonObject().get("contents").getAsString();
+
+        WikiDto wiki = new WikiDto();
+        wiki.setTitle(title);
+        wiki.setContents(contents);
+        wikiService.insertWikiNetwork(wiki);
+
+    }
 }

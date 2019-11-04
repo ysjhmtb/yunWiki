@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Route, Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import './Wikiview.css';
@@ -38,32 +38,27 @@ const DivRight = styled.div`
 
 
 
-const Wikiview = (props) => {
-    console.log(props.titles[0]);
-    console.log(props.category);
+const Wikiview = (props) => {      
 
-    const [contentToRender, setContentToRender] = useState("");
+    const [objToRender, setObjToRender] = useState("");
 
-    function renderContent(index){
+    function renderContent(index) {
         console.log('clicked');
         console.log(index);
-        setContentToRender(props.contents[index]);
-     }
-
-    const titlesList = props.titles.map((title, index) => {
-        // return <DivEachTitle key={index}>{title}</DivEachTitle>;
+        setObjToRender(props.ObjArr[index]);
+    }
+    const titlesList = props.ObjArr.map((obj, index) => {
         return <div className="eachTitle"
             key={index}
-            onClick = {() =>renderContent(index)}>
-            {title} {index}
+            onClick={() => renderContent(index)}>
+            {obj.title} {index}
         </div>
-    });
-    const contentsList = props.contents.map((content, index) => {
-        return <li key={index}>{content}</li>;
-    });
+    }); 
 
 
     return (
+
+
         <DivWikiview>
 
             <DivLeft>
@@ -76,9 +71,10 @@ const Wikiview = (props) => {
             </DivLeft>
 
             <DivRight>
-                <Contentview content={contentToRender} category={props.category}/>
+                <Contentview contentObj={objToRender} category={props.category} />
             </DivRight>
         </DivWikiview>
+
     );
 };
 
