@@ -6,10 +6,11 @@ import GoogleLogin from 'react-google-login';
 
 
 const SignContainer = (props) => {
-    
+    console.log("\n SignContainer");
+    console.log(props);
+
+
     const responseGoogle = (response) => {
-        console.log(response);
-        console.log(response.profileObj.email);
 
         if (response.profileObj.email === 'ysjhmtb@gmail.com') {
             props.signchange();
@@ -17,8 +18,19 @@ const SignContainer = (props) => {
     }
 
     const renderRedirect = () => {
-        if (props.signstate.signstate == true) {
-            return <Redirect to={'/editor/' + props.category} />
+        // && props.location.state.editortype !== 'update'
+        if (props.signstate.signstate == true && props.location.state.editortype === 'write') {
+            // return <Redirect to={'/editor/' + props.category} />
+            return <Redirect to={{
+                pathname: '/editor/' + props.category,
+                state: props.location.state
+            }} />
+        } else if (props.signstate.signstate == true && props.location.state.editortype === 'update') {
+            // return <Redirect to={'/update/' + props.location.state.props.category} />
+            return <Redirect to={{
+                pathname: '/update/' + props.category,
+                state: props.location.state
+            }} />
         }
     }
 

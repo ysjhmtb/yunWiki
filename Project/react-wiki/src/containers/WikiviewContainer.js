@@ -9,7 +9,8 @@ const DivWikiviewContainer = styled.div`
     // display:inline-block;
 `;
 
-const WikiviewContainer = ({ match }) => {
+const WikiviewContainer = ({ match, props }) => {
+    
 
     const [wikiConArrObj, setWikiConArrObj] = useState({
 

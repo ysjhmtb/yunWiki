@@ -3,6 +3,9 @@ const initialState = {
 }
 
 const signReducer = (state = initialState, action) => {
+
+    console.log('\n inside signReducer');
+    
     switch(action.type){
         case 'SIGNCHANGE':
             return {

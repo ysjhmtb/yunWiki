@@ -16,6 +16,9 @@ const DivMainBody = styled.div`
 
 const MainBody = (props) => {
 
+    const temp = { id: 1, text: 'hello' };
+ 
+
     return (
         <DivMainBody>
 

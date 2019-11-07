@@ -90,4 +90,22 @@ public class WikiApiController {
         wikiService.insertWikiNetwork(wiki);
 
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/update/SpringBoot", method = RequestMethod.PUT)
+    public void updateWikiSpring(@RequestBody String jsonMessage) throws Exception {
+        System.out.println(jsonMessage);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/update/React", method = RequestMethod.PUT)
+    public void updateWikiReact(@RequestBody String jsonMessage) throws Exception {
+        System.out.println(jsonMessage);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/update/Network", method = RequestMethod.PUT)
+    public void updateWikiNetwork(@RequestBody String jsonMessage) throws Exception {
+        System.out.println(jsonMessage);
+    }
 }

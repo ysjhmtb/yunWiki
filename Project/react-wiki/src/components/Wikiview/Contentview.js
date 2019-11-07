@@ -2,18 +2,33 @@ import React, { useContext } from 'react';
 import { Route, Link } from 'react-router-dom';
 import MarkdownRenderer from 'react-markdown-renderer';
 import './Contentview.css';
+import { connect } from 'react-redux'
+import { write, update } from '../../actions/writingType'
 import { UserConsumer } from '../../contexts/userContext';
 import { Test } from '../../contexts/Test';
 
 
+
 const Contentview = (props) => {
-    
+
+    console.log('\n Contentview');
+    console.log(props);
+
+    const updateUrl = "/update/" + props.category;
     const url = "/editor/" + props.category;
+
 
     return (
         <div>
             <div className="catagoryDiv">{props.category}</div>
-            <div className="writingDiv"><Link to={url}> 작성하기 </Link></div>
+            <div className="writingDiv"><Link to={{
+                pathname: url,
+                state: { props, editortype: "write" }
+            }}> 작성하기 </Link></div>
+            <div className="updateDiv"><Link to={{
+                pathname: updateUrl,
+                state: { props, editortype: "update" }
+            }} > 수정하기 </Link></div>
 
             <hr />
             <MarkdownRenderer markdown={props.contentObj.contents} />
@@ -23,3 +38,4 @@ const Contentview = (props) => {
 };
 
 export default Contentview;
+

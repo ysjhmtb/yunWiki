@@ -9,7 +9,10 @@ import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
 
 const EditorContainer = (props) => {
-    
+    console.log('EditorContainer');
+    console.log(props);
+    console.log(props.match.params.category);
+
     // editor
     const [rawtitle, setRawtitle] = useState('');
     const [rawmarkdown, setRawmarkdown] = useState('');
@@ -28,19 +31,21 @@ const EditorContainer = (props) => {
     const [writingCompleted, setWritingCompleted] = useState(false);
 
     const renderRedirect = () => {
-        if (props.signstate.signstate == false) {
-            return <Redirect to={'/signin/' + props.category} />
+        if (props.signstate.signstate === false) {
+            return <Redirect to={{
+                pathname: '/signin/' + props.category,
+                state: props.location.state
+            }} />
+            // return <Redirect to={'/signin/' + props.category} />
         } else if (writingCompleted === true) {
             return <Redirect to={'/wikiview/' + props.category} />
         }
-
-
     }
 
 
     // writing completed 
     const completeWriting = () => {
-        
+
         try {
 
             const tempCategory = props.category;
