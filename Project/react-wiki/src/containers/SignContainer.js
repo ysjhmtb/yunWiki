@@ -6,10 +6,6 @@ import GoogleLogin from 'react-google-login';
 
 
 const SignContainer = (props) => {
-    console.log("\n SignContainer");
-    console.log(props);
-
-
     const responseGoogle = (response) => {
 
         if (response.profileObj.email === 'ysjhmtb@gmail.com') {

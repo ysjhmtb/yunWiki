@@ -4,119 +4,126 @@
 <mapper namespace="com.yun.bootwiki.wiki.mapper.WikiMapper">
     <select id="selectWikiSpringList" resultType="com.yun.bootwiki.wiki.dto.WikiDto">
 		<![CDATA[
-
-
-
-                SELECT wiki_index,
-                       title,
-                       contents,
-                       DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
-                FROM wiki_board_spring
-                WHERE deleted_yn = 'N'
-                ORDER BY wiki_index DESC
-
-
-
+		SELECT wiki_index,
+			   title,
+			   contents,
+			   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
+		FROM wiki_board_spring
+		WHERE deleted_yn = 'N'
+		ORDER BY wiki_index DESC
         ]]>
 	</select>
 
     <select id="selectWikiReactList" resultType="com.yun.bootwiki.wiki.dto.WikiDto">
 		<![CDATA[
-
-
-                SELECT wiki_index,
-                   title,
-                   contents,
-                   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
-                FROM wiki_board_react
-                WHERE deleted_yn = 'N'
-                ORDER BY wiki_index DESC
-
-
+		SELECT wiki_index,
+		   title,
+		   contents,
+		   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
+		FROM wiki_board_react
+		WHERE deleted_yn = 'N'
+		ORDER BY wiki_index DESC
         ]]>
 	</select>
 
     <select id="selectWikiNetworkList" resultType="com.yun.bootwiki.wiki.dto.WikiDto">
 		<![CDATA[
-
-
-                SELECT wiki_index,
-                   title,
-                   contents,
-                   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
-                FROM wiki_board_network
-                WHERE deleted_yn = 'N'
-                ORDER BY wiki_index DESC
-
-
+		SELECT wiki_index,
+		   title,
+		   contents,
+		   DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime
+		FROM wiki_board_network
+		WHERE deleted_yn = 'N'
+		ORDER BY wiki_index DESC
         ]]>
 	</select>
 
     <insert id="insertWikiSpring" parameterType="com.yun.bootwiki.wiki.dto.WikiDto" useGeneratedKeys="false"
             keyProperty="wiki_index">
 		<![CDATA[
-
-                    INSERT INTO wiki_board_spring
-                    (
-                        wiki_index,
-                        title,
-                        contents,
-                        created_datetime
-                    )
-                    VALUES
-                    (
-                        0,
-                        #{title},
-                        #{contents},
-                        NOW()
-                    )
-
+		INSERT INTO wiki_board_spring
+		(
+			wiki_index,
+			title,
+			contents,
+			created_datetime
+		)
+		VALUES
+		(
+			0,
+			#{title},
+			#{contents},
+			NOW()
+		)
         ]]>
 	</insert>
 
     <insert id="insertWikiReact" parameterType="com.yun.bootwiki.wiki.dto.WikiDto" useGeneratedKeys="false"
             keyProperty="wiki_index">
 		<![CDATA[
-
-                    INSERT INTO wiki_board_react
-                    (
-                        wiki_index,
-                        title,
-                        contents,
-                        created_datetime
-                    )
-                    VALUES
-                    (
-                        0,
-                        #{title},
-                        #{contents},
-                        NOW()
-                    )
-
+		INSERT INTO wiki_board_react
+		(
+			wiki_index,
+			title,
+			contents,
+			created_datetime
+		)
+		VALUES
+		(
+			0,
+			#{title},
+			#{contents},
+			NOW()
+		)
         ]]>
 	</insert>
 
-	<insert id="insertWikiNetwork" parameterType="com.yun.bootwiki.wiki.dto.WikiDto" useGeneratedKeys="false"
-			keyProperty="wiki_index">
+    <insert id="insertWikiNetwork" parameterType="com.yun.bootwiki.wiki.dto.WikiDto" useGeneratedKeys="false"
+            keyProperty="wiki_index">
 		<![CDATA[
-
-                    INSERT INTO wiki_board_network
-                    (
-                        wiki_index,
-                        title,
-                        contents,
-                        created_datetime
-                    )
-                    VALUES
-                    (
-                        0,
-                        #{title},
-                        #{contents},
-                        NOW()
-                    )
-
+		INSERT INTO wiki_board_network
+		(
+			wiki_index,
+			title,
+			contents,
+			created_datetime
+		)
+		VALUES
+		(
+			0,
+			#{title},
+			#{contents},
+			NOW()
+		)
         ]]>
 	</insert>
+
+    <update id="updateWikiSpring" parameterType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+		UPDATE wiki_board_spring
+		SET title=#{title},
+			contents=#{contents}
+		WHERE wiki_index = #{wikiIndex}
+        ]]>
+	</update>
+
+	<update id="updateWikiReact" parameterType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+		UPDATE wiki_board_react
+		SET title=#{title},
+			contents=#{contents}
+		WHERE wiki_index = #{wikiIndex}
+        ]]>
+	</update>
+
+	<update id="updateWikiNetwork" parameterType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+		UPDATE wiki_board_network
+		SET title=#{title},
+			contents=#{contents}
+		WHERE wiki_index = #{wikiIndex}
+        ]]>
+	</update>
 
 
 </mapper>

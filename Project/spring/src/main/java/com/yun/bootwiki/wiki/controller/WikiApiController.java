@@ -20,6 +20,8 @@ public class WikiApiController {
 
     @Autowired
     private WikiService wikiService;
+    private WikiDto wiki;
+
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/wikispring", method = RequestMethod.GET)
@@ -42,20 +44,12 @@ public class WikiApiController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/post/SpringBoot", method = RequestMethod.POST)
     public void insertWikiSpring(@RequestBody String jsonMessage) throws Exception {
-        // {"params":{"title":"123","contents":"# 456\n789"}}
-        System.out.println(jsonMessage);
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(jsonMessage);
-        // {"params":{"title":"143","contents":"345"}}
-        System.out.println(element);
-//        System.out.println(element.getAsJsonObject().get("params"));
-//        System.out.println(element.getAsJsonObject().get("params").getAsJsonObject().get("title"));
-//        System.out.println(element.getAsJsonObject().get("params").getAsJsonObject().get("contents"));
-
         String title = element.getAsJsonObject().get("title").getAsString();
         String contents = element.getAsJsonObject().get("contents").getAsString();
 
-        WikiDto wiki = new WikiDto();
+        wiki = new WikiDto();
         wiki.setTitle(title);
         wiki.setContents(contents);
         wikiService.insertWikiSpring(wiki);
@@ -69,7 +63,7 @@ public class WikiApiController {
         String title = element.getAsJsonObject().get("title").getAsString();
         String contents = element.getAsJsonObject().get("contents").getAsString();
 
-        WikiDto wiki = new WikiDto();
+        wiki = new WikiDto();
         wiki.setTitle(title);
         wiki.setContents(contents);
         wikiService.insertWikiReact(wiki);
@@ -84,7 +78,7 @@ public class WikiApiController {
         String title = element.getAsJsonObject().get("title").getAsString();
         String contents = element.getAsJsonObject().get("contents").getAsString();
 
-        WikiDto wiki = new WikiDto();
+        wiki = new WikiDto();
         wiki.setTitle(title);
         wiki.setContents(contents);
         wikiService.insertWikiNetwork(wiki);
@@ -94,18 +88,49 @@ public class WikiApiController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/update/SpringBoot", method = RequestMethod.PUT)
     public void updateWikiSpring(@RequestBody String jsonMessage) throws Exception {
-        System.out.println(jsonMessage);
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        String title = element.getAsJsonObject().get("title").getAsString();
+        String contents = element.getAsJsonObject().get("contents").getAsString();
+        int wikiIndex = element.getAsJsonObject().get("wikiIndex").getAsInt();
+
+        wiki = new WikiDto();
+        wiki.setTitle(title);
+        wiki.setContents(contents);
+        wiki.setWikiIndex(wikiIndex);
+        wikiService.updateWikiSpring(wiki);
+
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/update/React", method = RequestMethod.PUT)
     public void updateWikiReact(@RequestBody String jsonMessage) throws Exception {
-        System.out.println(jsonMessage);
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        String title = element.getAsJsonObject().get("title").getAsString();
+        String contents = element.getAsJsonObject().get("contents").getAsString();
+        int wikiIndex = element.getAsJsonObject().get("wikiIndex").getAsInt();
+
+        wiki = new WikiDto();
+        wiki.setTitle(title);
+        wiki.setContents(contents);
+        wiki.setWikiIndex(wikiIndex);
+        wikiService.updateWikiReact(wiki);
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/update/Network", method = RequestMethod.PUT)
     public void updateWikiNetwork(@RequestBody String jsonMessage) throws Exception {
-        System.out.println(jsonMessage);
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        String title = element.getAsJsonObject().get("title").getAsString();
+        String contents = element.getAsJsonObject().get("contents").getAsString();
+        int wikiIndex = element.getAsJsonObject().get("wikiIndex").getAsInt();
+
+        wiki = new WikiDto();
+        wiki.setTitle(title);
+        wiki.setContents(contents);
+        wiki.setWikiIndex(wikiIndex);
+        wikiService.updateWikiNetwork(wiki);
     }
 }

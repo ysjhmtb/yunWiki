@@ -13,6 +13,10 @@ public interface WikiService {
     void insertWikiReact(WikiDto wiki) throws Exception;
     void insertWikiNetwork(WikiDto wiki) throws Exception;
 
+    void updateWikiSpring(WikiDto wiki) throws Exception;
+    void updateWikiReact(WikiDto wiki) throws Exception;
+    void updateWikiNetwork(WikiDto wiki) throws Exception;
+
 
 
 }

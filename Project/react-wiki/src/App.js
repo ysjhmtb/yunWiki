@@ -8,7 +8,6 @@ import Counter from './components/Counter'
 import { Router, BrowserRouter, Route, withRouter, Switch } from 'react-router-dom';
 import SignContainer from './containers/SignContainer';
 import UpdateContainer from './containers/UpdateContainer';
-import TestContainer from './containers/TestContainer';
 
 function App() {
   return (

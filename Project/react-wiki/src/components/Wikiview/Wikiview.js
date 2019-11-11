@@ -43,8 +43,6 @@ const Wikiview = (props) => {
     const [objToRender, setObjToRender] = useState("");
 
     function renderContent(index) {
-        console.log('clicked');
-        console.log(index);
         setObjToRender(props.ObjArr[index]);
     }
     const titlesList = props.ObjArr.map((obj, index) => {
@@ -60,7 +58,6 @@ const Wikiview = (props) => {
 
 
         <DivWikiview>
-
             <DivLeft>
                 <Link to="/"><div style={{ margin: "1rem" }}>Home</div></Link>
                 <div style={{ margin: "1rem" }}>{props.category}</div>

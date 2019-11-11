@@ -11,12 +11,8 @@ import { Test } from '../../contexts/Test';
 
 const Contentview = (props) => {
 
-    console.log('\n Contentview');
-    console.log(props);
-
     const updateUrl = "/update/" + props.category;
     const url = "/editor/" + props.category;
-
 
     return (
         <div>

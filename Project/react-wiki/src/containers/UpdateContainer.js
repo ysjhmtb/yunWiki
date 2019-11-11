@@ -10,9 +10,19 @@ import axios from 'axios'
 
 const UpdateContainer = (props) => {
 
-    console.log('UpdateContainer:');
-    console.log(props);
-    console.log(props.match.params.category);
+    // editor
+    const [rawtitle, setRawtitle] = useState(props.location.state.props.contentObj.title);
+    const [rawmarkdown, setRawmarkdown] = useState(props.location.state.props.contentObj.contents);
+
+    const handleTitle = e => {
+        console.log(e.target.value);
+        setRawtitle(e.target.value);
+    }
+
+    const handleChange = value => {
+        console.log(value);
+        setRawmarkdown(value);
+    };
 
     // writing state 
     const [writingCompleted, setWritingCompleted] = useState(false);
@@ -29,12 +39,41 @@ const UpdateContainer = (props) => {
         }
     }
 
-   
+    // writing completed 
+    const completeWriting = () => {
+
+        try {
+
+            const tempCategory = props.category;
+            const tempUrl = 'http://localhost:8080/api/update/' + tempCategory;
+            axios.put(tempUrl, {
+                title: rawtitle,
+                contents: rawmarkdown,
+                wikiIndex: props.location.state.props.contentObj.wikiIndex
+            });
+
+        } catch (e) {
+            console.log(e);
+        }
+
+        setWritingCompleted(true);
+        renderRedirect();
+    }
+
+
+
 
     return (
         <div>
             {renderRedirect()}
-            UpdateContainer
+
+            <div>Title: <input value={rawtitle} type="text" onChange={handleTitle} /></div>
+            <SimpleMDE value={rawmarkdown} onChange={handleChange} />
+            <MarkdownRenderer markdown={rawmarkdown} />
+
+            <hr />
+
+            <button onClick={() => completeWriting()}>complete</button>
         </div>
     )
 }
