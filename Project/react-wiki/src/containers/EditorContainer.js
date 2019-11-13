@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signchange } from '../actions/sign'
-import SimpleMDE from "react-simplemde-editor";
+import SimpleMDE from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'

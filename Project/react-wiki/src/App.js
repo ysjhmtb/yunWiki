@@ -18,8 +18,6 @@ function App() {
       <Route path="/editor/:category" component={EditorContainer} />
       <Route path="/signin/:category" component={SignContainer} />
       <Route path="/update/:category" component={UpdateContainer} />
-
-
     </div>
   );
 }

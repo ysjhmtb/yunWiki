@@ -2,10 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signchange } from '../actions/sign'
-import GoogleLogin from 'react-google-login';
+import GoogleLogin from 'react-google-login'
 
 
 const SignContainer = (props) => {
+    console.log('SignContainer');
+    console.log(props);
+
     const responseGoogle = (response) => {
 
         if (response.profileObj.email === 'ysjhmtb@gmail.com') {

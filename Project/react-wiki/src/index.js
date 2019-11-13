@@ -5,11 +5,35 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router'
 import configureStore, { history } from './configureStore'
 
 const store = configureStore()
 
+/*
+Failed to compile.
+
+./src/index.js
+  Line 15:5:  Expected an assignment or function call 
+  and instead saw an expression  no-unused-expressions
+*/
+const render = () => {
+    ReactDOM.render(
+        <AppContainer>
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <>
+                        <App history={history} />
+                    </>
+                </ConnectedRouter>
+            </Provider>
+        </AppContainer>
+        , document.getElementById('root')
+    );
+}
+
+/*
 const render = () => {
     ReactDOM.render(
         <AppContainer>
@@ -22,7 +46,7 @@ const render = () => {
         , document.getElementById('root')
     );
 }
-
+*/
 
 render();
 
@@ -33,6 +57,7 @@ if (module.hot) {
         render()
     })
 }
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
