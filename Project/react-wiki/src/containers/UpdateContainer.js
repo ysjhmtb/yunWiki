@@ -9,10 +9,12 @@ import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
 
 const UpdateContainer = (props) => {
+    console.log('UpdateContainer');
+    console.log(props);
 
     // editor
-    const [rawtitle, setRawtitle] = useState(props.location.state.props.contentObj.title);
-    const [rawmarkdown, setRawmarkdown] = useState(props.location.state.props.contentObj.contents);
+    const [rawtitle, setRawtitle] = useState(props.location.state.contentObj.title);
+    const [rawmarkdown, setRawmarkdown] = useState(props.location.state.contentObj.contents);
 
     const handleTitle = e => {
         console.log(e.target.value);
@@ -28,8 +30,7 @@ const UpdateContainer = (props) => {
     const [writingCompleted, setWritingCompleted] = useState(false);
 
     const renderRedirect = () => {
-        if (props.signstate.signstate === false) {
-            // return <Redirect to={'/signin/' + props.category} />
+        if (props.signstate.signstate === false) {            
             return <Redirect to={{
                 pathname: '/signin/' + props.category,
                 state: props.location.state
@@ -49,7 +50,7 @@ const UpdateContainer = (props) => {
             axios.put(tempUrl, {
                 title: rawtitle,
                 contents: rawmarkdown,
-                wikiIndex: props.location.state.props.contentObj.wikiIndex
+                wikiIndex: props.location.state.contentObj.wikiIndex
             });
 
         } catch (e) {

@@ -11,22 +11,15 @@ import configureStore, { history } from './configureStore'
 
 const store = configureStore()
 
-/*
-Failed to compile.
-
-./src/index.js
-  Line 15:5:  Expected an assignment or function call 
-  and instead saw an expression  no-unused-expressions
-*/
 const render = () => {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-                <ConnectedRouter history={history}>
-                    <>
+                {/* <ConnectedRouter history={history}>
+                    <> */}
                         <App history={history} />
-                    </>
-                </ConnectedRouter>
+                    {/* </>
+                </ConnectedRouter> */}
             </Provider>
         </AppContainer>
         , document.getElementById('root')

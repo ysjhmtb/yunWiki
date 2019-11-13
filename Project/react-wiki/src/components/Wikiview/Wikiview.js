@@ -38,7 +38,9 @@ const DivRight = styled.div`
 
 
 
-const Wikiview = (props) => {      
+const Wikiview = (props) => {
+    console.log('Wikiview');
+    console.log(props);      
 
     const [objToRender, setObjToRender] = useState("");
 

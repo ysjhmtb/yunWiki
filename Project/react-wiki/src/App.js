@@ -6,19 +6,25 @@ import WikiviewContainer from './containers/WikiviewContainer';
 import EditorContainer from './containers/EditorContainer';
 import Counter from './components/Counter'
 import { Router, BrowserRouter, Route, withRouter, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router'
 import SignContainer from './containers/SignContainer';
 import UpdateContainer from './containers/UpdateContainer';
 
-function App() {
+function App({ history }) {
   return (
-    <div>
-      <Route path="/" component={MainContainer} exact={true} />
-      <Route path="/counter" component={Counter} />
-      <Route path="/wikiview/:category" component={WikiviewContainer} />
-      <Route path="/editor/:category" component={EditorContainer} />
-      <Route path="/signin/:category" component={SignContainer} />
-      <Route path="/update/:category" component={UpdateContainer} />
-    </div>
+    <ConnectedRouter history={history}>
+      <div>
+        <Switch>
+          <Route path="/" component={MainContainer} exact={true} />
+          <Route path="/counter" component={Counter} />
+          <Route path="/wikiview/:category" component={WikiviewContainer} />
+          <Route path="/editor/:category" component={EditorContainer} />
+          <Route path="/signin/:category" component={SignContainer} />
+          <Route path="/update/:category" component={UpdateContainer} />
+        </Switch>
+      </div>
+    </ConnectedRouter>
+    
   );
 }
 

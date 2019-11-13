@@ -10,6 +10,10 @@ const DivWikiviewContainer = styled.div`
 `;
 
 const WikiviewContainer = ({ match, props }) => {
+    console.log('WikiviewContainer: match');
+    console.log(match);
+    console.log('WikiviewContainer: props');
+    console.log(props);
     
 
     const [wikiConArrObj, setWikiConArrObj] = useState({

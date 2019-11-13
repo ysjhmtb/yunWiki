@@ -10,9 +10,9 @@ import { write, update } from '../../actions/writingType'
 import { UserConsumer } from '../../contexts/userContext'
 import axios from 'axios'
 
-
-
 const Contentview = (props) => {
+    console.log('Contentview');
+    console.log(props);
 
     const updateUrl = "/update/" + props.category;
     const url = "/editor/" + props.category;
@@ -22,12 +22,14 @@ const Contentview = (props) => {
             <div className="catagoryDiv">{props.category}</div>
             <div className="writingDiv"><Link to={{
                 pathname: url,
-                state: { props, editortype: "write" }
+                state: { category: props.category, contentObj: props.contentObj, editortype: "write" }
             }}> 작성하기 </Link></div>
             <div className="updateDiv"><Link to={{
                 pathname: updateUrl,
-                state: { props, editortype: "update" }
-            }} > 수정하기 </Link></div>
+                state: { category: props.category, contentObj: props.contentObj, editortype: "update" }
+            }} > 수정하기 </Link></div>         
+
+
 
             <hr />
             <MarkdownRenderer markdown={props.contentObj.contents} />
@@ -36,21 +38,23 @@ const Contentview = (props) => {
     );
 };
 
-// Contentview.propTypes = {
-//     signstate: PropTypes.object,
-//     signchange: PropTypes.func.isRequired,
-// }
 
-// const mapStateToProps = (state, props) => ({
-//     signstate: state.sign,
-//     category: props.category
-// })
+Contentview.propTypes = {
+    signstate: PropTypes.object,
+    signchange: PropTypes.func.isRequired,
+}
 
-// const mapDispatchToProps = dispatch => ({
-//     signchange: () => dispatch(signchange()),
-// })
+const mapStateToProps = (state, props) => ({
+    signstate: state.sign,
+    category: props.category
+})
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Contentview)
+const mapDispatchToProps = dispatch => ({
+    signchange: () => dispatch(signchange()),
+})
 
-export default Contentview;
+export default connect(mapStateToProps, mapDispatchToProps)(Contentview)
+
+
+// export default Contentview;
 

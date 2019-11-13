@@ -15,6 +15,8 @@ const DivMainBody = styled.div`
 
 
 const MainBody = (props) => {
+    console.log('MainBody');
+    console.log(props);
 
     return (
         <DivMainBody>

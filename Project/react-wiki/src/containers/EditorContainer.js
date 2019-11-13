@@ -9,6 +9,8 @@ import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
 
 const EditorContainer = (props) => {
+    console.log('EditorContainer');
+    console.log(props);
     
     // editor
     const [rawtitle, setRawtitle] = useState('');
