@@ -133,4 +133,42 @@ public class WikiApiController {
         wiki.setWikiIndex(wikiIndex);
         wikiService.updateWikiNetwork(wiki);
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/delete/SpringBoot", method = RequestMethod.PUT)
+    public void deleteWikiSpring(@RequestBody String jsonMessage) throws Exception {
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        int wikiIndex = element.getAsJsonObject().get("wikiIndex").getAsInt();
+
+        wiki = new WikiDto();
+        wiki.setWikiIndex(wikiIndex);
+        wikiService.deleteWikiSpring(wiki);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/delete/React", method = RequestMethod.PUT)
+    public void deleteWikiReact(@RequestBody String jsonMessage) throws Exception {
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        int wikiIndex = element.getAsJsonObject().get("wikiIndex").getAsInt();
+
+        wiki = new WikiDto();
+        wiki.setWikiIndex(wikiIndex);
+        wikiService.deleteWikiReact(wiki);
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/delete/Network", method = RequestMethod.PUT)
+    public void deleteWikiNetwork(@RequestBody String jsonMessage) throws Exception {
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        int wikiIndex = element.getAsJsonObject().get("wikiIndex").getAsInt();
+
+        wiki = new WikiDto();
+        wiki.setWikiIndex(wikiIndex);
+        wikiService.deleteWikiNetwork(wiki);
+    }
+
+
 }

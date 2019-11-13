@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
 import MarkdownRenderer from 'react-markdown-renderer'
@@ -17,6 +17,35 @@ const Contentview = (props) => {
     const updateUrl = "/update/" + props.category;
     const url = "/editor/" + props.category;
 
+    const [deleteFlag, setDeleteFlag] = useState(false);
+    const deleteWiki = () => {
+        if (props.signstate.signstate == false) {
+            setDeleteFlag(true);
+            renderRedirect();
+        } else if (props.signstate.signstate == true && props.contentObj != "") {
+            try {
+                const tempCategory = props.category;
+                const tempUrl = 'http://localhost:8080/api/delete/' + tempCategory;
+                axios.put(tempUrl, {
+                    wikiIndex: props.contentObj.wikiIndex
+                });
+                window.location.reload();
+
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    }
+
+    const renderRedirect = () => {
+        if (deleteFlag == true) {
+            return <Redirect to={{
+                pathname: '/signin/' + props.category,
+                state: { category: props.category, contentObj: props.contentObj, editortype: "delete" }
+            }} />
+        }
+    }
+
     return (
         <div>
             <div className="catagoryDiv">{props.category}</div>
@@ -27,14 +56,16 @@ const Contentview = (props) => {
             <div className="updateDiv"><Link to={{
                 pathname: updateUrl,
                 state: { category: props.category, contentObj: props.contentObj, editortype: "update" }
-            }} > 수정하기 </Link></div>         
-
-
+            }} > 수정하기 </Link></div>
+            <div onClick={deleteWiki}>
+                삭제하기
+            </div>
 
             <hr />
             <MarkdownRenderer markdown={props.contentObj.contents} />
-
+            {renderRedirect()}
         </div>
+
     );
 };
 

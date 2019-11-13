@@ -30,6 +30,11 @@ const SignContainer = (props) => {
                 pathname: '/update/' + props.category,
                 state: props.location.state
             }} />
+        }else if(props.signstate.signstate == true && props.location.state.editortype === 'delete'){
+            return <Redirect to={{
+                pathname: '/wikiview/' + props.category,
+                state: props.location.state
+            }} />
         }
     }
 

@@ -61,9 +61,6 @@ const UpdateContainer = (props) => {
         renderRedirect();
     }
 
-
-
-
     return (
         <div>
             {renderRedirect()}

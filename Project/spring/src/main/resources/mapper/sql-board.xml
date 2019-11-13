@@ -125,5 +125,28 @@
         ]]>
 	</update>
 
+	<update id="deleteWikiSpring" parameterType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+		UPDATE wiki_board_spring
+		SET deleted_yn='Y'
+		WHERE wiki_index = #{wikiIndex}
+        ]]>
+	</update>
+
+	<update id="deleteWikiReact" parameterType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+		UPDATE wiki_board_react
+		SET deleted_yn='Y'
+		WHERE wiki_index = #{wikiIndex}
+        ]]>
+	</update>
+
+	<update id="deleteWikiNetwork" parameterType="com.yun.bootwiki.wiki.dto.WikiDto">
+		<![CDATA[
+		UPDATE wiki_board_network
+		SET deleted_yn='Y'
+		WHERE wiki_index = #{wikiIndex}
+        ]]>
+	</update>
 
 </mapper>

@@ -17,6 +17,9 @@ public interface WikiService {
     void updateWikiReact(WikiDto wiki) throws Exception;
     void updateWikiNetwork(WikiDto wiki) throws Exception;
 
+    void deleteWikiSpring(WikiDto wiki) throws Exception;
+    void deleteWikiReact(WikiDto wiki) throws Exception;
+    void deleteWikiNetwork(WikiDto wiki) throws Exception;
 
 
 }

@@ -44,9 +44,6 @@ const WikiviewContainer = ({ match, props }) => {
                 response.data.forEach(element => {
                     console.log('forEach element print');
                     console.log(element);
-                    /*
-                    {wikiIndex: 7, title: "llvm", contents: "hmm", createdDatetime: "2019.10.30 08:24:21"}
-                    */
                     TspringObjs.push(element);
                 });
 

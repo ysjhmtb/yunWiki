@@ -15,11 +15,7 @@ const render = () => {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-                {/* <ConnectedRouter history={history}>
-                    <> */}
-                        <App history={history} />
-                    {/* </>
-                </ConnectedRouter> */}
+                <App history={history} />
             </Provider>
         </AppContainer>
         , document.getElementById('root')

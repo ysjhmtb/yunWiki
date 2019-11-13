@@ -35,9 +35,6 @@ const DivRight = styled.div`
     margin:1rem;
 `;
 
-
-
-
 const Wikiview = (props) => {
     console.log('Wikiview');
     console.log(props);      

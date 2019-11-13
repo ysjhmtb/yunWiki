@@ -58,4 +58,19 @@ public class WikiServiceImpl implements WikiService {
     public void updateWikiNetwork(WikiDto wiki) throws Exception {
         wikiMapper.updateWikiNetwork(wiki);
     }
+
+    @Override
+    public void deleteWikiSpring(WikiDto wiki) throws Exception {
+        wikiMapper.deleteWikiSpring(wiki);
+    }
+
+    @Override
+    public void deleteWikiReact(WikiDto wiki) throws Exception {
+        wikiMapper.deleteWikiReact(wiki);
+    }
+
+    @Override
+    public void deleteWikiNetwork(WikiDto wiki) throws Exception {
+        wikiMapper.deleteWikiNetwork(wiki);
+    }
 }
