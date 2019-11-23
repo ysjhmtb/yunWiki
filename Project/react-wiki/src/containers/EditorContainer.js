@@ -48,7 +48,7 @@ const EditorContainer = (props) => {
         try {
 
             const tempCategory = props.category;
-            const tempUrl = 'http://localhost:8080/api/post/' + tempCategory;
+            const tempUrl = 'http://3.135.76.114:80/api/post/' + tempCategory;
             axios.post(tempUrl, {
                 title: rawtitle,
                 contents: rawmarkdown

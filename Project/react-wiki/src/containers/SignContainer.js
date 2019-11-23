@@ -11,7 +11,7 @@ const SignContainer = (props) => {
 
     const responseGoogle = (response) => {
 
-        if (response.profileObj.email === 'ysjhmtb@gmail.com') {
+        if (response.profileObj.email === 'yunseokjeonapi@gmail.com') {
             props.signchange();
         }
     }

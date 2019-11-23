@@ -46,7 +46,7 @@ const UpdateContainer = (props) => {
         try {
 
             const tempCategory = props.category;
-            const tempUrl = 'http://localhost:8080/api/update/' + tempCategory;
+            const tempUrl = 'http://3.135.76.114:80/api/update/' + tempCategory;
             axios.put(tempUrl, {
                 title: rawtitle,
                 contents: rawmarkdown,

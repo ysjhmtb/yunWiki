@@ -25,7 +25,7 @@ const Contentview = (props) => {
         } else if (props.signstate.signstate == true && props.contentObj != "") {
             try {
                 const tempCategory = props.category;
-                const tempUrl = 'http://localhost:8080/api/delete/' + tempCategory;
+                const tempUrl = 'http://3.135.76.114:80/api/delete/' + tempCategory;
                 axios.put(tempUrl, {
                     wikiIndex: props.contentObj.wikiIndex
                 });
