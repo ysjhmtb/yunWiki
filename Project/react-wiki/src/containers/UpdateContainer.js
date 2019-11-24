@@ -7,6 +7,7 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
+import './UpdateContainer.css'
 
 const UpdateContainer = (props) => {
     console.log('UpdateContainer');
@@ -62,10 +63,12 @@ const UpdateContainer = (props) => {
     }
 
     return (
-        <div>
+        <div className='updateDiv'>
             {renderRedirect()}
 
-            <div>Title: <input value={rawtitle} type="text" onChange={handleTitle} /></div>
+            <div className='updateTitle'>
+                TITLE
+                <input className='updateInput' value={rawtitle} type="text" onChange={handleTitle} /></div>
             <SimpleMDE value={rawmarkdown} onChange={handleChange} />
             <MarkdownRenderer markdown={rawmarkdown} />
 

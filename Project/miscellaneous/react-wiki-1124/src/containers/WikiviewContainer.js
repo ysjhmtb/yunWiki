@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
 import Wikiview from '../components/Wikiview/Wikiview';
 import axios from 'axios'
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-    container:{
-        height: 1
-    }
-  });
+const DivWikiviewContainer = styled.div`
+    // text-align:center;
+    // vertical-align: middle;
+    // display:inline-block;
+`;
 
 const WikiviewContainer = ({ match, props }) => {
     console.log('WikiviewContainer: match');
     console.log(match);
     console.log('WikiviewContainer: props');
     console.log(props);
-
-    const classes = useStyles();
     
 
     const [wikiConArrObj, setWikiConArrObj] = useState({
@@ -101,31 +99,34 @@ const WikiviewContainer = ({ match, props }) => {
 
     if (loading === false && category === 'SpringBoot') {
         return (
-            <div className={classes.container}>
+            <DivWikiviewContainer>
+
                 <Wikiview
                     category='SpringBoot'
                     ObjArr={wikiConArrObj.springObjArr}
                 />
-            </div>
+            </DivWikiviewContainer>
         );
 
     } else if (loading === false && category === 'React') {
         return (
-            <div className={classes.container}>
+            <DivWikiviewContainer>
+
                 <Wikiview
                     category='React'
                     ObjArr={wikiConArrObj.reactObjArr}
                 />
-            </div>
+            </DivWikiviewContainer>
         );
     } else if (loading === false && category === 'Network') {
         return (
-            <div className={classes.container}>
+            <DivWikiviewContainer>
+
                 <Wikiview
                     category='Network'
                     ObjArr={wikiConArrObj.networkObjArr}
                 />
-            </div>
+            </DivWikiviewContainer>
         );
     } else {
         return (

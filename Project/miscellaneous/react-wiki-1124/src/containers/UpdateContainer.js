@@ -3,21 +3,18 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signchange } from '../actions/sign'
-import SimpleMDE from "react-simplemde-editor"
+import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
-import './EditorContainer.css'
 
-
-
-const EditorContainer = (props) => {
-    console.log('EditorContainer');
+const UpdateContainer = (props) => {
+    console.log('UpdateContainer');
     console.log(props);
-    
+
     // editor
-    const [rawtitle, setRawtitle] = useState('');
-    const [rawmarkdown, setRawmarkdown] = useState('');
+    const [rawtitle, setRawtitle] = useState(props.location.state.contentObj.title);
+    const [rawmarkdown, setRawmarkdown] = useState(props.location.state.contentObj.contents);
 
     const handleTitle = e => {
         console.log(e.target.value);
@@ -33,17 +30,15 @@ const EditorContainer = (props) => {
     const [writingCompleted, setWritingCompleted] = useState(false);
 
     const renderRedirect = () => {
-        if (props.signstate.signstate === false) {
+        if (props.signstate.signstate === false) {            
             return <Redirect to={{
                 pathname: '/signin/' + props.category,
                 state: props.location.state
             }} />
-            // return <Redirect to={'/signin/' + props.category} />
         } else if (writingCompleted === true) {
             return <Redirect to={'/wikiview/' + props.category} />
         }
     }
-
 
     // writing completed 
     const completeWriting = () => {
@@ -51,10 +46,11 @@ const EditorContainer = (props) => {
         try {
 
             const tempCategory = props.category;
-            const tempUrl = 'http://3.135.76.114:80/api/post/' + tempCategory;
-            axios.post(tempUrl, {
+            const tempUrl = 'http://3.135.76.114:80/api/update/' + tempCategory;
+            axios.put(tempUrl, {
                 title: rawtitle,
-                contents: rawmarkdown
+                contents: rawmarkdown,
+                wikiIndex: props.location.state.contentObj.wikiIndex
             });
 
         } catch (e) {
@@ -66,25 +62,21 @@ const EditorContainer = (props) => {
     }
 
     return (
-        <div className='editorDiv'>
+        <div>
             {renderRedirect()}
 
-            <div className='editorTitle'>
-                TITLE  
-                <input className='editorInput' type="text" onChange={handleTitle} />
-            </div>
-            <SimpleMDE onChange={handleChange} />
+            <div>Title: <input value={rawtitle} type="text" onChange={handleTitle} /></div>
+            <SimpleMDE value={rawmarkdown} onChange={handleChange} />
             <MarkdownRenderer markdown={rawmarkdown} />
 
             <hr />
 
             <button onClick={() => completeWriting()}>complete</button>
-
         </div>
     )
 }
 
-EditorContainer.propTypes = {
+UpdateContainer.propTypes = {
     signstate: PropTypes.object,
     signchange: PropTypes.func.isRequired,
 }
@@ -98,5 +90,6 @@ const mapDispatchToProps = dispatch => ({
     signchange: () => dispatch(signchange()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditorContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateContainer)
 
+// export default UpdateContainer;

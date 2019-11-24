@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Route, Link } from 'react-router-dom'
 import MarkdownRenderer from 'react-markdown-renderer'
@@ -6,9 +6,9 @@ import './Contentview.css'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signchange } from '../../actions/sign'
+import { write, update } from '../../actions/writingType'
+import { UserConsumer } from '../../contexts/userContext'
 import axios from 'axios'
-import Button from '@material-ui/core/Button';
-
 
 const Contentview = (props) => {
     console.log('Contentview');
@@ -49,34 +49,19 @@ const Contentview = (props) => {
     return (
         <div>
             <div className="catagoryDiv">{props.category}</div>
-            <div calssName='menuDiv'>
-            <Button className="writingDiv">
-                <Link
-                    style={{textDecoration: 'none', color: 'black'}}
-                    to={{
-                        pathname: url,
-                        state: { category: props.category, contentObj: props.contentObj, editortype: "write" }
-                }}> 
-                    작성하기 
-                </Link>
-            </Button>
-
-            <Button className="updatebtnDiv">
-                <Link
-                    style={{textDecoration: 'none', color: 'black'}}
-                    to={{
-                        pathname: updateUrl,
-                        state: { category: props.category, contentObj:      props.contentObj, editortype: "update" }
-                }} > 
-                    수정하기 
-                </Link>
-            </Button>
-
-            <Button className="deleteDiv" onClick={deleteWiki}>
+            <div className="writingDiv"><Link to={{
+                pathname: url,
+                state: { category: props.category, contentObj: props.contentObj, editortype: "write" }
+            }}> 작성하기 </Link></div>
+            <div className="updateDiv"><Link to={{
+                pathname: updateUrl,
+                state: { category: props.category, contentObj: props.contentObj, editortype: "update" }
+            }} > 수정하기 </Link></div>
+            <div onClick={deleteWiki}>
                 삭제하기
-            </Button>
             </div>
-            <hr className="divider"/>
+
+            <hr />
             <MarkdownRenderer markdown={props.contentObj.contents} />
             {renderRedirect()}
         </div>
@@ -101,4 +86,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contentview)
 
+
+// export default Contentview;
 

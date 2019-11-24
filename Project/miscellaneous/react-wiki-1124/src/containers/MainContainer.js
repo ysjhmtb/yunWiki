@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
 import img1 from '../assets/images/card-images/spring-boot-logo.png';
 import img2 from '../assets/images/card-images/React-icon.png';
 import img3 from '../assets/images/card-images/networkDesign.jpg';
 
 import MainHeader from '../components/Main/MainHeader';
 import MainBody from '../components/Main/MainBody';
+
+const DivMainContainer = styled.div`
+    text-align:center;
+    vertical-align: middle;
+`;
 
 const MainContainer = () => {
 
@@ -40,10 +46,10 @@ const MainContainer = () => {
 
     
     return (
-        <div>
+        <DivMainContainer>
             <MainHeader />
             <MainBody menuArr={menuArr} />
-        </div>
+        </DivMainContainer>
     );
 
 };

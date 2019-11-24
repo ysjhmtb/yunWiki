@@ -1,5 +1,32 @@
-.categoryDiv .writingDiv{
-    float:left;
-    margin:1rem;
+.categoryDiv{
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+}
+.menuDiv {
+    display: flex;
 }
 
+.writingDiv {
+    display: flex;
+    width: 100px;
+    float: right;
+}
+
+
+.updatebtnDiv {
+    display: flex;
+    width: 100px;
+    float: right;
+}
+
+.deleteDiv {
+    display: flex;
+    width: 100px;
+    float: right;
+}
+
+.divider {
+    display: block;
+    width: 100%;
+}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signchange } from '../actions/sign'
 import GoogleLogin from 'react-google-login'
-import './SignContainer.css'
+
 
 const SignContainer = (props) => {
     console.log('SignContainer');
@@ -40,16 +40,12 @@ const SignContainer = (props) => {
 
     return (
         <div>
-            <div className='wrap'>
-                Login
             <GoogleLogin
-                className='login'
                 clientId="1014864534722-ml110psa3e6loulpvpfpulpoch986efu.apps.googleusercontent.com"
                 buttonText="LOGIN WITH GOOGLE"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
             />
-            </div>
 
             {renderRedirect()}
         </div>

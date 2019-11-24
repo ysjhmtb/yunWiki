@@ -7,9 +7,6 @@ import SimpleMDE from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css"
 import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
-import './EditorContainer.css'
-
-
 
 const EditorContainer = (props) => {
     console.log('EditorContainer');
@@ -66,13 +63,10 @@ const EditorContainer = (props) => {
     }
 
     return (
-        <div className='editorDiv'>
+        <div>
             {renderRedirect()}
 
-            <div className='editorTitle'>
-                TITLE  
-                <input className='editorInput' type="text" onChange={handleTitle} />
-            </div>
+            <div>Title: <input type="text" onChange={handleTitle} /></div>
             <SimpleMDE onChange={handleChange} />
             <MarkdownRenderer markdown={rawmarkdown} />
 

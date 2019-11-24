@@ -1,54 +1,45 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import { width } from '@material-ui/system';
 
-const CardShell = styled.div`
-    display: inline-block;
-    height: 400px;
-    margin: 7rem;
-    position: relative;
-    width: 400px;
-    
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    &:hover{
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    }
-`;
+const useStyles = makeStyles({
+  card: {
+    float: 'left'
+  },
+  media: {
+    minHeight: 240,
+  },
+});
 
-const ImgDivInCard = styled.div`
-    background:${props => props.color};
-    height:50%;
-    text-align:center;
-    vertical-align: middle;
-`;
-
-
-const ImgOfCard = styled.img`
-    padding:2rem;
-    max-width: 50%;
-    height: auto;
-`;
-
-const TextDivInCard = styled.div`
-    padding:3rem;
-    background:${props => props.color};
-    height: 50%;
-    text-align: center;
-    vertical-align: middle;
-`;
-
-const MainCard = (props) => {
+export default function MainCard(props) {
     console.log('MainCard');
-    console.log(props);    
+    console.log(props); 
 
-    return (
-        <CardShell>
-            <ImgDivInCard color={props.colorCardImg}>
-                <ImgOfCard src={props.imgSrc} alt="cardimg" />
-            </ImgDivInCard>
-            <TextDivInCard color={props.colorCardText}>{props.text}</TextDivInCard>
-        </CardShell>
-    );
-};
+    const classes = useStyles();
 
-export default MainCard;
+  return (
+    <Card className={classes.card} color={props.colorCardImg}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={props.imgSrc}
+          title={props.title}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.title}
+          </Typography>
+          <Typography variant="body2" color={props.colorCardText} component="p">
+            {props.text}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+}
