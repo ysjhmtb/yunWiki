@@ -5,23 +5,26 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.yun.bootwiki.wiki.dto.WikiDto;
 import com.yun.bootwiki.wiki.service.WikiService;
 //import org.json.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
+@EnableScheduling
 public class WikiApiController {
 
     @Autowired
     private WikiService wikiService;
     private WikiDto wiki;
-
+    private static boolean hasLogin;
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/wikispring", method = RequestMethod.GET)
@@ -137,6 +140,7 @@ public class WikiApiController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/delete/SpringBoot", method = RequestMethod.PUT)
     public void deleteWikiSpring(@RequestBody String jsonMessage) throws Exception {
+        System.out.println(jsonMessage);
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(jsonMessage);
         int wikiIndex = element.getAsJsonObject().get("wikiIndex").getAsInt();
@@ -170,5 +174,34 @@ public class WikiApiController {
         wikiService.deleteWikiNetwork(wiki);
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/setLogin", method = RequestMethod.POST)
+    public void setLogin(@RequestBody String jsonMessage) throws Exception {
 
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(jsonMessage);
+        String email = element.getAsJsonObject().get("email").getAsString();
+        System.out.println(email);
+
+        if (!hasLogin && email.equals("yunseokjeonapi@gmail.com")) {
+            hasLogin = true;
+            System.out.println(hasLogin);
+        }
+    }
+
+    @Scheduled(fixedRateString = "1800000", initialDelay = 6000)
+    private void checkLoginStatus() {
+        if (hasLogin) {
+            hasLogin = false;
+            System.out.println(hasLogin);
+        }
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/getLoginStatus", method = RequestMethod.GET)
+    public Map<String, Boolean> getLoginStatus() throws Exception {
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("LoginStatus", hasLogin);
+        return map;
+    }
 }

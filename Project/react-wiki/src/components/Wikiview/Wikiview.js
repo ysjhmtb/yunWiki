@@ -10,40 +10,40 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles({
-    mainContainer:{
+    mainContainer: {
         width: '100%',
         height: '100%'
     },
-    DivLeft:{
-        width:'30%',
+    DivLeft: {
+        width: '30%',
         float: 'left',
         margin: '1rem'
     },
-    DivTitles:{
+    DivTitles: {
 
     },
-    DivRight:{
+    DivRight: {
         paddingLeft: '1rem',
         width: '60%',
         float: 'left',
         margin: '1rem'
     },
-    home:{
+    home: {
         margin: '10px',
         color: 'black'
     },
-    category:{
+    category: {
         marginTop: '20px',
         marginBottom: '20px'
     }
-  });
+});
 
 const Wikiview = (props) => {
 
     const classes = useStyles();
 
     console.log('Wikiview');
-    console.log(props);      
+    console.log(props);
 
     const [objToRender, setObjToRender] = useState("");
 
@@ -52,22 +52,30 @@ const Wikiview = (props) => {
     }
     const titlesList = props.ObjArr.map((obj, index) => {
         return (
-            <ListItem button>
-                <ListItemText
-                    key={index}
-                    onClick={() => renderContent(index)}>
-                    {obj.title} {index}
-                </ListItemText>
-            </ListItem>
+            <div
+                key={index}
+                onClick={() => renderContent(index)}>
+                {obj.title}
+            </div>
+            // <ListItem button>
+            //     <ListItemText>
+            //         <div>
+            //             key={index}
+            //             onClick={() => renderContent(index)}>
+            //             {obj.title}
+            //         </div>
+
+            //     </ListItemText>
+            // </ListItem>
         )
-    }); 
+    });
 
 
     return (
         <div className={classes.mainContainer}>
             <div className={classes.DivLeft}>
-                <Link to="/" style={{textDecoration: 'none'}}>
-                    <img src={imghome} style={{ width: 15 }}/>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <img src={imghome} style={{ width: 15 }} />
                     <Typography variant="h8" className={classes.home}>Home</Typography>
                 </Link>
 
@@ -76,10 +84,10 @@ const Wikiview = (props) => {
                 </Typography>
 
                 <Typography variant="h6" className={classes.DivTitles}>
-                <Divider />
-                <div>
-                    {titlesList}
-                </div>
+                    <Divider />
+                    <div>
+                        {titlesList}
+                    </div>
                 </Typography>
             </div>
 

@@ -4,14 +4,29 @@ import { Redirect } from 'react-router-dom'
 import { signchange } from '../actions/sign'
 import GoogleLogin from 'react-google-login'
 import './SignContainer.css'
+import axios from 'axios'
 
 const SignContainer = (props) => {
     console.log('SignContainer');
     console.log(props);
 
-    const responseGoogle = (response) => {
+    const sendLoginInfo = async (email_addr) => {
+        console.log("sendLoginInfo");
+        console.log(email_addr);
+        try {
+            const url = 'http://localhost:8080/api/setLogin'
+            await axios.post(url, {
+                email: email_addr
+            });
 
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const responseGoogle = (response) => {
         if (response.profileObj.email === 'yunseokjeonapi@gmail.com') {
+            sendLoginInfo(response.profileObj.email);
             props.signchange();
         }
     }
@@ -30,7 +45,7 @@ const SignContainer = (props) => {
                 pathname: '/update/' + props.category,
                 state: props.location.state
             }} />
-        }else if(props.signstate.signstate == true && props.location.state.editortype === 'delete'){
+        } else if (props.signstate.signstate == true && props.location.state.editortype === 'delete') {
             return <Redirect to={{
                 pathname: '/wikiview/' + props.category,
                 state: props.location.state
@@ -43,12 +58,12 @@ const SignContainer = (props) => {
             <div className='wrap'>
                 Login
             <GoogleLogin
-                className='login'
-                clientId="1014864534722-ml110psa3e6loulpvpfpulpoch986efu.apps.googleusercontent.com"
-                buttonText="LOGIN WITH GOOGLE"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-            />
+                    className='login'
+                    clientId="1014864534722-ml110psa3e6loulpvpfpulpoch986efu.apps.googleusercontent.com"
+                    buttonText="LOGIN WITH GOOGLE"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                />
             </div>
 
             {renderRedirect()}

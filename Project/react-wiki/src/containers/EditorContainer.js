@@ -9,15 +9,18 @@ import MarkdownRenderer from 'react-markdown-renderer'
 import axios from 'axios'
 import './EditorContainer.css'
 
-
-
 const EditorContainer = (props) => {
     console.log('EditorContainer');
     console.log(props);
-    
+
     // editor
     const [rawtitle, setRawtitle] = useState('');
     const [rawmarkdown, setRawmarkdown] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [logInfoFromServer, setLogInfo] = useState(false);
+    // writing state 
+    const [writingCompleted, setWritingCompleted] = useState(false);
+
 
     const handleTitle = e => {
         console.log(e.target.value);
@@ -29,11 +32,26 @@ const EditorContainer = (props) => {
         setRawmarkdown(value);
     };
 
-    // writing state 
-    const [writingCompleted, setWritingCompleted] = useState(false);
+    
+
+    // getting login info
+    const checkLoginStatus = () => {
+        let response = axios.get('http://localhost:8080/api/getLoginStatus');
+        response.then(function (value) {
+            console.log(value.data.LoginStatus);
+            if (value.data.LoginStatus === true) {
+                setLogInfo(true);
+                setLoading(false);
+            } else {
+                setLoading(false);
+            }
+        });
+    }
 
     const renderRedirect = () => {
-        if (props.signstate.signstate === false) {
+        console.log("renderRedirect !!!");
+
+        if (logInfoFromServer === false) {
             return <Redirect to={{
                 pathname: '/signin/' + props.category,
                 state: props.location.state
@@ -42,6 +60,16 @@ const EditorContainer = (props) => {
         } else if (writingCompleted === true) {
             return <Redirect to={'/wikiview/' + props.category} />
         }
+
+        // if (props.signstate.signstate === false) {
+        //     return <Redirect to={{
+        //         pathname: '/signin/' + props.category,
+        //         state: props.location.state
+        //     }} />
+        //     // return <Redirect to={'/signin/' + props.category} />
+        // } else if (writingCompleted === true) {
+        //     return <Redirect to={'/wikiview/' + props.category} />
+        // }
     }
 
 
@@ -49,9 +77,9 @@ const EditorContainer = (props) => {
     const completeWriting = () => {
 
         try {
-
             const tempCategory = props.category;
-            const tempUrl = 'http://3.135.76.114:80/api/post/' + tempCategory;
+            const tempUrl = 'http://localhost:8080/api/post/' + tempCategory;
+            // const tempUrl = 'http://3.135.76.114:80/api/post/' + tempCategory;
             axios.post(tempUrl, {
                 title: rawtitle,
                 contents: rawmarkdown
@@ -65,23 +93,34 @@ const EditorContainer = (props) => {
         renderRedirect();
     }
 
-    return (
-        <div className='editorDiv'>
-            {renderRedirect()}
-
-            <div className='editorTitle'>
-                TITLE  
-                <input className='editorInput' type="text" onChange={handleTitle} />
+    checkLoginStatus();
+    if (loading) {
+        return (
+            <div>
+                {/* https://stackoverflow.com/questions/33117449/invariant-violation-objects-are-not-valid-as-a-react-child */}
+                {/* {checkLoginStatus()} */}
+                Loading...
             </div>
-            <SimpleMDE onChange={handleChange} />
-            <MarkdownRenderer markdown={rawmarkdown} />
+        )
+    }
 
-            <hr />
+    if (!loading) {
+        return (
+            <div className='editorDiv'>
+                {renderRedirect()}
 
-            <button onClick={() => completeWriting()}>complete</button>
+                <div className='editorTitle'>
+                    TITLE
+                    <input className='editorInput' type="text" onChange={handleTitle} />
+                </div>
+                <SimpleMDE onChange={handleChange} />
+                <MarkdownRenderer markdown={rawmarkdown} />
+                <hr />
+                <button onClick={() => completeWriting()}>complete</button>
+            </div>
+        )
+    }
 
-        </div>
-    )
 }
 
 EditorContainer.propTypes = {

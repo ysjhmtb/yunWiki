@@ -16,6 +16,11 @@ const UpdateContainer = (props) => {
     // editor
     const [rawtitle, setRawtitle] = useState(props.location.state.contentObj.title);
     const [rawmarkdown, setRawmarkdown] = useState(props.location.state.contentObj.contents);
+    const [loading, setLoading] = useState(true);
+    const [logInfoFromServer, setLogInfo] = useState(false);
+
+    // writing state 
+    const [writingCompleted, setWritingCompleted] = useState(false);
 
     const handleTitle = e => {
         console.log(e.target.value);
@@ -27,11 +32,10 @@ const UpdateContainer = (props) => {
         setRawmarkdown(value);
     };
 
-    // writing state 
-    const [writingCompleted, setWritingCompleted] = useState(false);
+    
 
     const renderRedirect = () => {
-        if (props.signstate.signstate === false) {            
+        if (logInfoFromServer === false) {
             return <Redirect to={{
                 pathname: '/signin/' + props.category,
                 state: props.location.state
@@ -39,6 +43,15 @@ const UpdateContainer = (props) => {
         } else if (writingCompleted === true) {
             return <Redirect to={'/wikiview/' + props.category} />
         }
+
+        // if (props.signstate.signstate === false) {
+        //     return <Redirect to={{
+        //         pathname: '/signin/' + props.category,
+        //         state: props.location.state
+        //     }} />
+        // } else if (writingCompleted === true) {
+        //     return <Redirect to={'/wikiview/' + props.category} />
+        // }
     }
 
     // writing completed 
@@ -47,7 +60,8 @@ const UpdateContainer = (props) => {
         try {
 
             const tempCategory = props.category;
-            const tempUrl = 'http://3.135.76.114:80/api/update/' + tempCategory;
+            const tempUrl = 'http://localhost:8080/api/update/' + tempCategory;
+            // const tempUrl = 'http://3.135.76.114:80/api/update/' + tempCategory;
             axios.put(tempUrl, {
                 title: rawtitle,
                 contents: rawmarkdown,
@@ -62,21 +76,46 @@ const UpdateContainer = (props) => {
         renderRedirect();
     }
 
-    return (
-        <div className='updateDiv'>
-            {renderRedirect()}
+    // getting login info
+    const checkLoginStatus = () => {
+        let response = axios.get('http://localhost:8080/api/getLoginStatus');
+        response.then(function (value) {
+            console.log(value.data.LoginStatus);
+            if (value.data.LoginStatus === true) {
+                setLogInfo(true);
+                setLoading(false);
+            } else {
+                setLoading(false);
+            }
+        });
+    }
 
-            <div className='updateTitle'>
-                TITLE
-                <input className='updateInput' value={rawtitle} type="text" onChange={handleTitle} /></div>
-            <SimpleMDE value={rawmarkdown} onChange={handleChange} />
-            <MarkdownRenderer markdown={rawmarkdown} />
+    checkLoginStatus();
+    if (loading) {
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
 
-            <hr />
+    if (!loading) {
+        return (
+            <div className='updateDiv'>
+                {renderRedirect()}
 
-            <button onClick={() => completeWriting()}>complete</button>
-        </div>
-    )
+                <div className='updateTitle'>
+                    TITLE
+                    <input className='updateInput' value={rawtitle} type="text" onChange={handleTitle} /></div>
+                <SimpleMDE value={rawmarkdown} onChange={handleChange} />
+                <MarkdownRenderer markdown={rawmarkdown} />
+
+                <hr />
+
+                <button onClick={() => completeWriting()}>complete</button>
+            </div>
+        )
+    }
 }
 
 UpdateContainer.propTypes = {
