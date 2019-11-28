@@ -9,6 +9,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.yun.bootwiki.wiki.dto.WikiDto;
 import com.yun.bootwiki.wiki.service.WikiService;
 //import org.json.JSONObject;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;

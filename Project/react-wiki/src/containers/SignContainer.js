@@ -14,7 +14,7 @@ const SignContainer = (props) => {
         console.log("sendLoginInfo");
         console.log(email_addr);
         try {
-            const url = 'http://localhost:8080/api/setLogin'
+            const url = 'http://3.135.76.114:80/api/setLogin'
             await axios.post(url, {
                 email: email_addr
             });

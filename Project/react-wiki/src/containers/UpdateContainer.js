@@ -60,8 +60,8 @@ const UpdateContainer = (props) => {
         try {
 
             const tempCategory = props.category;
-            const tempUrl = 'http://localhost:8080/api/update/' + tempCategory;
-            // const tempUrl = 'http://3.135.76.114:80/api/update/' + tempCategory;
+            // const tempUrl = 'http://localhost:8080/api/update/' + tempCategory;
+            const tempUrl = 'http://3.135.76.114:80/api/update/' + tempCategory;
             axios.put(tempUrl, {
                 title: rawtitle,
                 contents: rawmarkdown,
@@ -78,7 +78,7 @@ const UpdateContainer = (props) => {
 
     // getting login info
     const checkLoginStatus = () => {
-        let response = axios.get('http://localhost:8080/api/getLoginStatus');
+        let response = axios.get('http://3.135.76.114:80/api/getLoginStatus');
         response.then(function (value) {
             console.log(value.data.LoginStatus);
             if (value.data.LoginStatus === true) {

@@ -38,8 +38,8 @@ const WikiviewContainer = ({ match, props }) => {
             try {
                 // 스프링 게시물에 대한 데이터 읽어오기
                 let response = await axios.get(
-                    'http://localhost:8080/api/wikispring',
-                    // 'http://3.135.76.114:80/api/wikispring',
+                    // 'http://localhost:8080/api/wikispring',
+                    'http://3.135.76.114:80/api/wikispring',
                 );
                 console.log('받아온 데이터 출력');
                 console.log(response.data);
@@ -53,8 +53,8 @@ const WikiviewContainer = ({ match, props }) => {
 
                 // 리액트 게시물에 대한 데이터 읽어오기
                 response = await axios.get(
-                    'http://localhost:8080/api/wikireact',
-                    // 'http://3.135.76.114:80/api/wikireact',
+                    // 'http://localhost:8080/api/wikireact',
+                    'http://3.135.76.114:80/api/wikireact',
                 );
 
                 response.data.forEach(element => {
@@ -64,8 +64,8 @@ const WikiviewContainer = ({ match, props }) => {
 
                 // 네트웍 게시물에 대한 데이터 읽어오기
                 response = await axios.get(
-                    'http://localhost:8080/api/wikinetwork',
-                    // 'http://3.135.76.114:80/api/wikinetwork',
+                    // 'http://localhost:8080/api/wikinetwork',
+                    'http://3.135.76.114:80/api/wikinetwork',
                 );
 
                 response.data.forEach(element => {

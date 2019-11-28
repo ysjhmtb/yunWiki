@@ -21,7 +21,7 @@ const Contentview = (props) => {
 
     // getting login info
     const checkLoginStatus = () => {
-        let response = axios.get('http://localhost:8080/api/getLoginStatus');
+        let response = axios.get('http://3.135.76.114:80/api/getLoginStatus');
         response.then(function (value) {
             console.log(value.data.LoginStatus);
             if (value.data.LoginStatus === true) {
@@ -35,7 +35,7 @@ const Contentview = (props) => {
     const deleteWiki = () => {
         console.log("deleteWiki");
 
-        let response = axios.get('http://localhost:8080/api/getLoginStatus');
+        let response = axios.get('http://3.135.76.114:80/api/getLoginStatus');
         response.then(function (value) {
             if (value.data.LoginStatus === true) {
                 console.log("deleteWiki if clause");
@@ -45,8 +45,8 @@ const Contentview = (props) => {
                 console.log("deleteWiki else if clause");
                 try {
                     const tempCategory = props.category;
-                    const tempUrl = 'http://localhost:8080/api/delete/' + tempCategory;
-                    // const tempUrl = 'http://3.135.76.114:80/api/delete/' + tempCategory;
+                    // const tempUrl = 'http://localhost:8080/api/delete/' + tempCategory;
+                    const tempUrl = 'http://3.135.76.114:80/api/delete/' + tempCategory;
                     axios.put(tempUrl, {
                         wikiIndex: props.contentObj.wikiIndex
                     });
